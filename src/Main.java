@@ -31,32 +31,36 @@ public class Main {
             System.out.println("Держитесь! Осталось " + i + " метров");
         }
         System.out.println("Task 3");
-        int sum = 1500;
-        int day = 1;
+        int money = 1500;
+        int parkingDay = 1;
+        int totalDays = 0;
         while (true) {
-            if (day % 5 == 0) {
-                day++;
+            if (parkingDay % 5 == 0) {
+                parkingDay++;
+                totalDays++;
                 System.out.println("Бесплатный день");
                 continue;
             }
-            sum -= 100;
-            System.out.println("День " + day + " : Списание 100. Остаток " + sum);
+            money -= 100;
+            totalDays++;
+            parkingDay++;
 
-            day++;
-            if (sum <= 100) {
+            if (money < 100) {
                 System.out.println("Пополните счет");
                 break;
             }
+            System.out.println("Бюджета хватило на " + totalDays + " дней");
+            System.out.println("Остаток на счете: " + money + " руб.");
         }
         System.out.println("Task 3 - for");
-        int sum2 = 1500;
-        int days = 1;
-        for (int i = sum2; i >= 100; days++) {
-            if (days % 5 == 0) {
-                System.out.println("День " + days + " : Бесплатный день. Остаток " + i);
+        int money2 = 1500;
+        int Parkingdays = 1;
+        for (int i = money2; i >= 100; Parkingdays++) {
+            if (Parkingdays % 5 == 0) {
+                System.out.println("День " + Parkingdays + " : Бесплатный день. Остаток " + i);
             } else {
                 i -= 100;
-                System.out.println("День " + days + " : Списание 100. Остаток " + i);
+                System.out.println("День " + Parkingdays + " : Списание 100. Остаток " + i);
             }
             System.out.println("Task 4");
             int month = 0;
@@ -79,18 +83,24 @@ public class Main {
         int charge = 20;
         int minute = 0;
         int overheats = 0;
-        while (charge < 100 && overheats <= 3) {
+        while (charge < 100 && overheats < 3) {
             minute++;
             charge = charge + 2;
+
             if (minute % 10 == 0) {
                 overheats++;
                 continue;
             }
-            if (overheats == 3) {
-                System.out.println("Зарядка прекращена. Текущий заряд " + charge);
-                break;
-            }
+        if (overheats >= 3) {
+            System.out.println("Зарядка прекращена. Текущий заряд " + charge + "%");
+            System.out.println("Причина: достигнуто 3 перегрева");
+        } else {
+            System.out.println("Зарядка завершена успешно. Текущий заряд " + charge + "%");
         }
+
+        System.out.println("Общее время зарядки: " + minute + " минут");
+        System.out.println("Количество перегревов: " + overheats);
+            }
         System.out.println("Время зарядки составило " + minute);
     }
 }
