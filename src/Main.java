@@ -13,20 +13,17 @@ public class Main {
         }
         System.out.println("Task 1");
         int firstFriday = 1;
-        for (int i = 1; i <= 31; i++) {
-            if (i == firstFriday) {
-                System.out.println("Сегодня пятница, " + firstFriday + " число. Необходимо подготовить отчет");
-                firstFriday += 7;
-            }
-            System.out.println("Task 2");
-            int distance = 0;
-            do {
-                System.out.println("Держитесь! Осталось " + distance + " метров");
-                distance += 500;
-            } while (distance <= 42195);
+        for (int day = firstFriday; day <= 31; day += 7) {
+            System.out.println("Сегодня пятница, " + day + " число. Необходимо подготовить отчет");
         }
-        System.out.println("Tas 2 - for");
+        System.out.println("Task 2");
         int distance = 0;
+        do {
+            System.out.println("Держитесь! Осталось " + distance + " метров");
+            distance += 500;
+        } while (distance <= 42195);
+        System.out.println("Tas 2 - for");
+        int distance1 = 0;
         for (int i = 0; i <= 42195; i = i + 500) {
             System.out.println("Держитесь! Осталось " + i + " метров");
         }
@@ -86,21 +83,23 @@ public class Main {
         while (charge < 100 && overheats < 3) {
             minute++;
             charge = charge + 2;
-
             if (minute % 10 == 0) {
                 overheats++;
+                System.out.println("Перегрев #" + overheats + " на " + minute + " минуте");
+                if (overheats >= 3) {
+                    System.out.println("Зарядка прекращена. Текущий заряд " + charge + "%");
+                    System.out.println("Причина: достигнуто 3 перегрева");
+                    break;
+                }
                 continue;
             }
-        if (overheats >= 3) {
-            System.out.println("Зарядка прекращена. Текущий заряд " + charge + "%");
-            System.out.println("Причина: достигнуто 3 перегрева");
-        } else {
-            System.out.println("Зарядка завершена успешно. Текущий заряд " + charge + "%");
         }
 
+        if (overheats < 3 && charge >= 100) {
+            System.out.println("Зарядка завершена успешно. Текущий заряд " + charge + "%");
+        }
         System.out.println("Общее время зарядки: " + minute + " минут");
         System.out.println("Количество перегревов: " + overheats);
-            }
-        System.out.println("Время зарядки составило " + minute);
+
     }
 }
